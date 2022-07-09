@@ -2,7 +2,7 @@
 
 ## What is an RFC?
 
-The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the game and its infrastructure.
+The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the game.
 
 Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
 
