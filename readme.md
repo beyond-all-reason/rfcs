@@ -99,7 +99,7 @@ If you are interested in working on the implementation for an 'active' RFC, but 
 
 Members of the [core team] will attempt to review some set of open RFC pull requests on a regular basis. If a core team member believes an RFC PR is ready to be accepted into active status, they can approve the PR using GitHub's review feature to signal their approval of the RFC.
 
-**BAR's RFC was forked directly from Vue's RFC process, which itself owes its inspiration to the [React RFC process], [Rust RFC process] and [Ember RFC process]**
+**BAR's RFC was forked directly from the [Vue RFC process], which itself owes its inspiration to the [React RFC process], [Rust RFC process] and [Ember RFC process]**
 
 [discord]: https://discord.com/invite/N968ddE
 [#suggestions channel]: https://discord.com/channels/549281623154229250/722148569007521863
