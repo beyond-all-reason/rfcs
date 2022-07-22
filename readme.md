@@ -71,7 +71,7 @@ In short, to get a major feature added to BAR, one must first get the RFC merged
     - Submit a pull request. Make sure to link to the discussion thread.
 
 4.  Eventually, the [core team] will decide whether the RFC is a candidate
-    for inclusion in Vue.
+    for inclusion in BAR.
 
     - An RFC can be modified based upon feedback from the [core team] and community. Significant modifications may trigger a new final comment period.
 
