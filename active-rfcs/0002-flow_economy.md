@@ -1,22 +1,27 @@
-- Start Date: (fill me in with today's date, YYYY-MM-DD)
-- Reference Issues: (fill in existing related issues, if any)
-- Implementation PR: (leave this empty)
+- Start Date: 2022-07-29
+- Reference Issues: N/A
+- Implementation PR: TBA
 
 # Summary
 
-Brief explanation of the feature.
+Add the capability to the engine to provide an alternative flow-economy system.
 
 # Motivation
 
-Why are we doing this? What use cases does it support? What is the expected
-outcome?
+The current economy system in the engine lacks the ability to prorate resources to unit tasks,
+leaving the burden squarely on the shoulders of the game devs. Unfortunately the game devs only
+have access to imperfect knowledge about the current state of the economic changes and so are
+only able to partially resolve the issue.
 
-Please focus on explaining the motivation so that if this RFC is not accepted,
-the motivation could be used to develop alternative solutions. In other words,
-enumerate the constraints you are trying to solve without coupling them too
-closely to the solution you have in mind.
+By handling resource proration in the engine, we avoid situations were some unit tasks are
+starved and unable to proceed while other tasks are able to proceed. So if demand is twice the
+supply, then all tasks will be able to progress at 50% of their intended rate.
+
+Would be able to drop the need for economy prioritization widgets.
 
 # Detailed design
+
+This will be filled out soon.
 
 This is the bulk of the RFC. Explain the design in enough detail for somebody
 familiar with BAR to understand, and for somebody familiar with the
@@ -26,19 +31,22 @@ defined here.
 
 # Drawbacks
 
-Why should we *not* do this? Please consider:
+Considerations of potential issues are listed thus:
 
-- implementation cost, both in term of code size and complexity
-- integration of this feature with other existing and planned features
-- user experience, will the implementation of this feature increase the complexity of the game?
+- we still need to keep the existing system for compatibility, so this new system will need to
+integrate carefully with existing code
+- the addition of maybe a thousand or more lines of code
+- some of the code will be of moderate complexity
 
 There are tradeoffs to choosing any path. Attempt to identify them here.
 
 # Alternatives
 
-What other designs have been considered? What is the impact of not doing this?
+Apart from leaving the situation as it is, only subtle variations in the technical implementation
+have been considered. Alternative complete approaches have not been considered.
 
 # Unresolved questions
 
-Optional, but suggested for first drafts. What parts of the design are still
-TBD?
+- Design of the Lua API may need further thought.
+- Possible opportunity to implement an alternative terrain restore command because it is in the
+scope of the code effects.
