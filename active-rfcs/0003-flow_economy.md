@@ -21,13 +21,55 @@ Would be able to drop the need for economy prioritization widgets.
 
 # Detailed design
 
-This will be filled out soon.
+ECS Systems introduced:
+- Flow Economy
+- Passive Economy Tasks
+- Build
+- Repair
+- Reclaim
+- Resurrect
+- Capture
+- Terraform
+- Unit Resource Tracker
 
-This is the bulk of the RFC. Explain the design in enough detail for somebody
-familiar with BAR to understand, and for somebody familiar with the
-implementation to implement. This should get into specifics and corner-cases,
-and include examples of how the feature is used. Any new terminology should be
-defined here.
+## Flow Economy System
+
+This system is responsible for the allocation of resources according to the resource requests submitted. This system ticks at the rate of 10hz, or every 3 simulation frames.
+
+> Resource Requests:
+> 
+> A resource request is a component that can attached to any entity that can be used to modify the resource storage. The Flow Economy system processes resource requests.
+>
+> A resource request can either add or use resources. An entity can have both types of requests:
+> 
+> - When an entity has only a Resource Use request, the Flow Economy System will try to remove the requested resources from the storage and assign a Resource Allocated component to the entity. If the resources had to be prorated then the Resource Allocated component will have a proration rate of less than 1.
+> 
+> - When an entity has only a Resource Add request, the Flow Economy System will add the resources to the storage.
+> 
+> - When an entity has both types of requests, the Flow Economy will process both as described above with one exception: if the Resource Use had to be prorated, then the resources gained from Resource Add request is reduced by the proration rate.
+
+Entities are not permitted to take simulation affecting actions if they are tied to resource usage, unless they have been assigned a Resource Allocation component. This component details whta resources have been assigned and the proration rate applied. This allows entities to modify the rate of progress for their given task based on the proration rate.
+
+> How to Carry out Resource-based Simulation Tasks:
+> 
+> - Raise the approriate Resource Request on the entity carrying out the task.
+> - On the next Flow Economy tick, the system will process the request and attach a Resource Allocation component to the entity.
+> - The entity can now carry out its task, adjusting progress according to whether the resources were prorated below 1.
+> - Reduce the resources recorded Resource Allocation component based on how much was needed and remove the Resource Allocation component. For example, the last frame of building a unit often requires fewer resources.
+
+When a ResourceAllocation component is destroyed, the Flow Economy System's registered observer will review whether any resources had not been used and returned those resources back to the approriate team's storage.
+
+All Systems that make use of Flow Economy need to be aware that the Flow Economy system expects them to process all Resource Allocations BEFORE the next Flow Economy System tick. Failure to do so could result in the loss of resources.
+
+When an entity no longer requires further resource allocations, the attached Resource Request component should be removed. This prevents the Flow Economy System processing the Resource Request in future ticks.
+
+### Unit Passive Economy Task
+
+A unit may have several sources of resource management, that need to be tracked separately. For example, a Command unit generates resources (Resource Add) and can carry out build orders (Resource Use.)
+
+To support this situation, there is an Economy Task Utility that allows an arbitrary number of independant Resource Requests to be associated with a single unit. Each Economy Task is itself an entity and holds Resource Requests.
+
+The Utilty allows for Economy Tasks to be added or removed by using a doubly-linked list component. This approach allows Systems to search through all the Economy Tasks attached to a unit.
 
 # Drawbacks
 
@@ -37,6 +79,7 @@ Considerations of potential issues are listed thus:
 integrate carefully with existing code
 - the addition of maybe a thousand or more lines of code
 - some of the code will be of moderate complexity
+- solution is part of ECS experiment so if the ECS is rejected then this will be too.
 
 There are tradeoffs to choosing any path. Attempt to identify them here.
 
