@@ -1,6 +1,21 @@
+/- Start Date: 8/22/2022
+- Reference Issues: NA afaik 
+-/ Implementation PR: (leave this empty)
+
+# Summary
+
 The goal is to have 
     1. a CPU score for each player 
     2. CPU scores will be in the lobby system
+
+
+# Motivation
+
+the reasons for allowing such a system would allow for players to see why their multiplayer performance is as good/bad on their end
+
+
+# Detailed design
+
 
 how this would be achieved
 1. a test that can be run in the new lobby, even when a player is inside of a multiplayer room
@@ -13,6 +28,11 @@ this allows for
 
     2.players with bad scores would be aware that they will lag behind first before other players
 
+
+
+
+# Drawbacks
+
 *Issue with CPU median*
 
 1. CPU median is dependent on the differences between CPU's
@@ -24,8 +44,7 @@ issues with implementing a CPU's scoring system
         a. faf community has this issue it depends on the host of the lobby in question (community self regulation)
     2. possible user toxicity to low scoring CPU
 
-
-
+# mitigation of drawbacks
 
 side note of point 1.
 1. faf community also uses ping as a means to self moderate lobbies as that also affects match performance(sometimes far greater than CPU score itself in terms of impact)
@@ -36,3 +55,11 @@ Ancedotal evidence from drivver44.
 1. its rare to see player toxicity occur
 2. when player toxicity has occured its because issues arised from a specific player lagging the game
 a. this can be the result of a low cpu score however it can be a factor of an interent system (ping or bad connection to another player)
+
+# Alternatives
+1. not having this system
+2. a number of different systems is possible with this idea.
+
+
+# Unresolved questions
+do we want such a system
