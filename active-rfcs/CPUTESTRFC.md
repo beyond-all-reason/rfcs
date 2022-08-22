@@ -11,8 +11,10 @@ The goal is to have
 
 # Motivation
 
-the reasons for allowing such a system would allow for players to see why their multiplayer performance is as good/bad on their end
-
+the goals are to allow for players to understand their performance vs other players
+to allow for community moderation of performance scores 
+to alert players that their computer is not good enough by community standards to be in the match
+to alert players that they are likely to be the first to lag out during a match
 
 # Detailed design
 
