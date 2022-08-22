@@ -34,6 +34,10 @@ Why should we *not* do this? Please consider:
 
 There are tradeoffs to choosing any path. Attempt to identify them here.
 
+# Drawback Mitigations
+
+For given drawbacks above, are there any ways these could potentially be resolved?
+
 # Alternatives
 
 What other designs have been considered? What is the impact of not doing this?
